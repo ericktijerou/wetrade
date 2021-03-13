@@ -57,12 +57,14 @@ private val LightColorPalette = lightColors(
 private val LightCustomColorPalette = MyThemeColors(
     custom1 = green,
     custom2 = red,
+    loginBackground = Color.White,
     isDark = false
 )
 
 private val DarkCustomColorPalette = MyThemeColors(
     custom1 = green,
     custom2 = red,
+    loginBackground = gray900,
     isDark = true
 )
 
@@ -149,11 +151,14 @@ fun ProvideMyThemeColors(
 class MyThemeColors(
     custom1: Color,
     custom2: Color,
+    loginBackground: Color,
     isDark: Boolean
 ) {
     var custom1 by mutableStateOf(custom1)
         private set
     var custom2 by mutableStateOf(custom2)
+        private set
+    var loginBackground by mutableStateOf(loginBackground)
         private set
     var isDark by mutableStateOf(isDark)
         private set
@@ -161,6 +166,7 @@ class MyThemeColors(
     fun update(other: MyThemeColors) {
         custom1 = other.custom1
         custom2 = other.custom2
+        loginBackground = other.loginBackground
         isDark = other.isDark
     }
 }

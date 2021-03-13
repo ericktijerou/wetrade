@@ -57,7 +57,7 @@ fun LoginScreen(goToMain: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MyTheme.colors.surface),
+            .background(color = MyTheme.customColors.loginBackground),
         contentAlignment = Alignment.TopCenter,
     ) {
         Column {
