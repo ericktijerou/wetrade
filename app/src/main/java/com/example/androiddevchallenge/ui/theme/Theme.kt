@@ -91,8 +91,8 @@ fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() (
     val elevation = if (darkTheme) DarkElevation else LightElevation
     val images = if (darkTheme) DarkImages else LightImages
     SideEffect {
-        sysUiController.setStatusBarColor(color = colors.surface, darkIcons = false)
-        sysUiController.setNavigationBarColor(color = colors.surface)
+        sysUiController.setStatusBarColor(color = colors.background, darkIcons = false)
+        sysUiController.setNavigationBarColor(color = colors.background)
     }
     ProvideMyThemeColors(elevation, images, customColors) {
         MaterialTheme(

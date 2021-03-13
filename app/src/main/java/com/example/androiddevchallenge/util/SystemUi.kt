@@ -78,7 +78,6 @@ private class SystemUiControllerImpl(private val window: Window) : SystemUiContr
         transformColorForLightContent: (Color) -> Color
     ) {
         val navBarColor = when {
-            Build.VERSION.SDK_INT >= 29 -> Color.Transparent // For gesture nav
             darkIcons && Build.VERSION.SDK_INT < 26 -> transformColorForLightContent(color)
             else -> color
         }

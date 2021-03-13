@@ -14,4 +14,9 @@
     <string name="label_login">LOG IN</string>
     <string name="hint_email">Email Address</string>
     <string name="hint_password">Password</string>
+    <string name="label_account">ACCOUNT</string>
+    <string name="label_watchlist">WATCHLIST</string>
+    <string name="label_profile">PROFILE</string>
+    <string name="label_balance">Balance</string>
+    <string name="label_transact">TRANSACT</string>
 </resources>
