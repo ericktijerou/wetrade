@@ -19,4 +19,5 @@
     <string name="label_profile">PROFILE</string>
     <string name="label_balance">Balance</string>
     <string name="label_transact">TRANSACT</string>
+    <string name="label_positions">Positions</string>
 </resources>

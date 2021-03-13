@@ -21,6 +21,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +33,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScrollableTabRow
@@ -56,61 +58,70 @@ import com.example.androiddevchallenge.ui.theme.gray900
 import com.example.androiddevchallenge.ui.theme.white600
 import com.example.androiddevchallenge.util.ThemedPreview
 
+@OptIn(ExperimentalMaterialApi::class)
 @ExperimentalFoundationApi
 @Composable
 fun MainScreen() {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MyTheme.colors.background),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Header(modifier = Modifier.fillMaxWidth())
-        Text(
-            text = stringResource(R.string.label_balance),
-            style = MyTheme.typography.subtitle1,
-            color = Color.White,
-            modifier = Modifier.paddingFromBaseline(top = 32.dp, bottom = 8.dp)
-        )
-        Text(
-            text = "$73,589.01",
-            style = MyTheme.typography.h1,
-            color = Color.White,
-            modifier = Modifier.paddingFromBaseline(top = 48.dp, bottom = 24.dp)
-        )
-        Text(
-            text = "+412.35 today",
-            style = MyTheme.typography.subtitle1,
-            color = MyTheme.customColors.custom1,
-            modifier = Modifier.paddingFromBaseline(top = 16.dp, bottom = 32.dp)
-        )
-        Button(
-            onClick = {},
-            shape = CircleShape,
-            elevation = ButtonDefaults.elevation(MyTheme.elevations.defaultElevation),
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-                .padding(start = 16.dp, end = 16.dp)
+                .fillMaxSize()
+                .background(MyTheme.colors.background),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Header(modifier = Modifier.fillMaxWidth())
             Text(
-                text = stringResource(R.string.label_transact),
-                style = MyTheme.typography.button,
-                color = gray900
+                text = stringResource(R.string.label_balance),
+                style = MyTheme.typography.subtitle1,
+                color = Color.White,
+                modifier = Modifier.paddingFromBaseline(top = 32.dp, bottom = 8.dp)
+            )
+            Text(
+                text = "$73,589.01",
+                style = MyTheme.typography.h1,
+                color = Color.White,
+                modifier = Modifier.paddingFromBaseline(top = 48.dp, bottom = 24.dp)
+            )
+            Text(
+                text = "+412.35 today",
+                style = MyTheme.typography.subtitle1,
+                color = MyTheme.customColors.custom1,
+                modifier = Modifier.paddingFromBaseline(top = 16.dp, bottom = 32.dp)
+            )
+            Button(
+                onClick = {},
+                shape = CircleShape,
+                elevation = ButtonDefaults.elevation(MyTheme.elevations.defaultElevation),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .padding(start = 16.dp, end = 16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.label_transact),
+                    style = MyTheme.typography.button,
+                    color = gray900
+                )
+            }
+            HomeCategoryTabs(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp),
+                categories = listOf("Week", "ETFs", "Stocks", "Funds", "Foo1", "Foo2", "Foo3")
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_home_illos),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
+                contentDescription = "",
+                contentScale = ContentScale.FillWidth
             )
         }
-        HomeCategoryTabs(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp),
-            categories = listOf("Week", "ETFs", "Stocks", "Funds", "Foo1", "Foo2", "Foo3")
-        )
-        Image(
-            painter = painterResource(id = R.drawable.ic_home_illos),
-            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
-            contentDescription = "",
-            contentScale = ContentScale.FillWidth
-        )
+        HomeScroll()
     }
 }
 
@@ -172,19 +183,17 @@ private fun HomeCategoryTabs(
         modifier = modifier
     ) {
         categories.forEachIndexed { index, category ->
-
-            ChoiceChipContent(
+            TabItemContent(
                 text = category,
                 selected = index == selectedIndex,
                 modifier = Modifier.padding(4.dp)
             )
-
         }
     }
 }
 
 @Composable
-private fun ChoiceChipContent(
+private fun TabItemContent(
     text: String,
     selected: Boolean,
     modifier: Modifier = Modifier
@@ -218,7 +227,6 @@ private fun ChoiceChipContent(
                 )
             }
         }
-
     }
 }
 
@@ -241,4 +249,3 @@ fun PreviewMainScreenDark() {
         MainScreen()
     }
 }
-

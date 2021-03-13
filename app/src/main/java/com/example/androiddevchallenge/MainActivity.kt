@@ -24,6 +24,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.util.LocalBackDispatcher
 import com.example.androiddevchallenge.util.LocalSysUiController
 import com.example.androiddevchallenge.util.SystemUiController
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val systemUiController = remember { SystemUiController(window) }
-            CompositionLocalProvider(LocalSysUiController provides systemUiController) {
+            CompositionLocalProvider(LocalSysUiController provides systemUiController, LocalBackDispatcher provides onBackPressedDispatcher) {
                 MyApp()
             }
         }
