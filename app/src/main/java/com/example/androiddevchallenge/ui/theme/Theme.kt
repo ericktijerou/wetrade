@@ -168,4 +168,3 @@ class MyThemeColors(
 private val LocalMyThemeColors = staticCompositionLocalOf<MyThemeColors> {
     error("No JetsnackColorPalette provided")
 }
-
