@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.util
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
@@ -34,6 +35,7 @@ sealed class Screen(val route: String) {
     object Main : Screen("main")
 }
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @Composable
 fun NavGraph(startDestination: Screen) {

@@ -58,7 +58,7 @@ import com.example.androiddevchallenge.ui.theme.gray900
 import com.example.androiddevchallenge.ui.theme.white600
 import com.example.androiddevchallenge.util.ThemedPreview
 
-@OptIn(ExperimentalMaterialApi::class)
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @Composable
 fun MainScreen() {
@@ -232,6 +232,7 @@ private fun TabItemContent(
 
 private val emptyTabIndicator: @Composable (List<TabPosition>) -> Unit = {}
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @Preview("Main screen")
 @Composable
@@ -241,6 +242,7 @@ fun PreviewMainScreen() {
     }
 }
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @Preview("Main screen dark")
 @Composable
