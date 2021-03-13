@@ -46,7 +46,7 @@ import com.example.androiddevchallenge.ui.theme.gray900
 import com.example.androiddevchallenge.util.ThemedPreview
 
 @Composable
-fun WelcomeScreen(goToLogin: () -> Unit) {
+fun WelcomeScreen(goToLogin: () -> Unit, goToMain: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,14 +59,18 @@ fun WelcomeScreen(goToLogin: () -> Unit) {
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
-        Icon(painterResource(id = MyTheme.images.logo), contentDescription = "logo", tint = Color.White)
+        Icon(
+            painterResource(id = MyTheme.images.logo),
+            contentDescription = "logo",
+            tint = Color.White
+        )
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(start = 16.dp, end = 16.dp, bottom = 32.dp)
         ) {
             Button(
-                onClick = goToLogin,
+                onClick = goToMain,
                 shape = CircleShape,
                 modifier = Modifier
                     .weight(1f)
@@ -102,7 +106,7 @@ fun WelcomeScreen(goToLogin: () -> Unit) {
 @Composable
 fun PreviewWelcomeScreen() {
     ThemedPreview {
-        WelcomeScreen(goToLogin = {})
+        WelcomeScreen(goToLogin = {}, goToMain = {})
     }
 }
 
@@ -110,6 +114,6 @@ fun PreviewWelcomeScreen() {
 @Composable
 fun PreviewWelcomeScreenDark() {
     ThemedPreview(darkTheme = true) {
-        WelcomeScreen(goToLogin = {})
+        WelcomeScreen(goToLogin = {}, goToMain = {})
     }
 }

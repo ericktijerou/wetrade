@@ -42,7 +42,7 @@ fun NavGraph(startDestination: Screen) {
         startDestination = startDestination.route
     ) {
         composable(Screen.Welcome.route) {
-            WelcomeScreen(actions.gotoLogin)
+            WelcomeScreen(actions.gotoLogin, actions.gotToMain)
         }
         composable(Screen.Login.route) {
             LoginScreen()
