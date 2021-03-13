@@ -16,6 +16,8 @@
 package com.example.androiddevchallenge.ui.main
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +36,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Surface
-import androidx.compose.material.Tab
 import androidx.compose.material.TabPosition
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -44,6 +45,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,6 +56,7 @@ import com.example.androiddevchallenge.ui.theme.gray900
 import com.example.androiddevchallenge.ui.theme.white600
 import com.example.androiddevchallenge.util.ThemedPreview
 
+@ExperimentalFoundationApi
 @Composable
 fun MainScreen() {
     Column(
@@ -100,6 +104,12 @@ fun MainScreen() {
                 .fillMaxWidth()
                 .padding(vertical = 16.dp),
             categories = listOf("Week", "ETFs", "Stocks", "Funds", "Foo1", "Foo2", "Foo3")
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_home_illos),
+            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
+            contentDescription = "",
+            contentScale = ContentScale.FillWidth
         )
     }
 }
@@ -163,11 +173,11 @@ private fun HomeCategoryTabs(
     ) {
         categories.forEachIndexed { index, category ->
 
-                ChoiceChipContent(
-                    text = category,
-                    selected = index == selectedIndex,
-                    modifier = Modifier.padding(4.dp)
-                )
+            ChoiceChipContent(
+                text = category,
+                selected = index == selectedIndex,
+                modifier = Modifier.padding(4.dp)
+            )
 
         }
     }
@@ -188,7 +198,11 @@ private fun ChoiceChipContent(
             .height(40.dp),
         color = Color.Transparent
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center, modifier = Modifier.padding(horizontal = 16.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
             Text(
                 text = text,
                 style = MaterialTheme.typography.body1,
@@ -196,7 +210,12 @@ private fun ChoiceChipContent(
                 modifier = Modifier.padding(end = 4.dp)
             )
             if (selected) {
-                Icon(imageVector = Icons.Filled.ExpandMore, contentDescription = "", tint = Color.White, modifier = Modifier.size(16.dp))
+                Icon(
+                    imageVector = Icons.Filled.ExpandMore,
+                    contentDescription = "",
+                    tint = Color.White,
+                    modifier = Modifier.size(16.dp)
+                )
             }
         }
 
@@ -205,6 +224,7 @@ private fun ChoiceChipContent(
 
 private val emptyTabIndicator: @Composable (List<TabPosition>) -> Unit = {}
 
+@ExperimentalFoundationApi
 @Preview("Main screen")
 @Composable
 fun PreviewMainScreen() {
@@ -213,6 +233,7 @@ fun PreviewMainScreen() {
     }
 }
 
+@ExperimentalFoundationApi
 @Preview("Main screen dark")
 @Composable
 fun PreviewMainScreenDark() {

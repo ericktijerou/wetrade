@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge.util
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
@@ -33,6 +34,7 @@ sealed class Screen(val route: String) {
     object Main : Screen("main")
 }
 
+@ExperimentalFoundationApi
 @Composable
 fun NavGraph(startDestination: Screen) {
     val navController = rememberNavController()

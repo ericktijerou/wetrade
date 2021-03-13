@@ -15,12 +15,14 @@
  */
 package com.example.androiddevchallenge
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.util.NavGraph
 import com.example.androiddevchallenge.util.Screen
 import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
+@ExperimentalFoundationApi
 @Composable
 fun MyApp() {
     ProvideWindowInsets {
