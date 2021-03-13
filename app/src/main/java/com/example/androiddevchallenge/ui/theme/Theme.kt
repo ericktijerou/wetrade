@@ -16,44 +16,156 @@
 package com.example.androiddevchallenge.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Shapes
+import androidx.compose.material.Typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.util.LocalSysUiController
 
 private val DarkColorPalette = darkColors(
-    primary = purple200,
-    primaryVariant = purple700,
-    secondary = teal200
+    primary = yellow,
+    onPrimary = gray900,
+    background = gray900,
+    surface = gray700,
+    onBackground = Color.White,
+    onSurface = Color.White
 )
 
 private val LightColorPalette = lightColors(
-    primary = purple500,
-    primaryVariant = purple700,
-    secondary = teal200
-
-        /* Other default colors to override
-    background = Color.White,
+    primary = yellow,
+    onPrimary = gray900,
+    background = purple,
     surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    onBackground = gray900,
+    onSurface = Color.White
+)
+
+private val LightCustomColorPalette = MyThemeColors(
+    custom1 = green,
+    custom2 = red,
+    isDark = false
+)
+
+private val DarkCustomColorPalette = MyThemeColors(
+    custom1 = green,
+    custom2 = red,
+    isDark = true
+)
+
+private val LightElevation = Elevations(defaultElevation = 0.dp)
+
+private val DarkElevation = Elevations(defaultElevation = 0.dp)
+
+private val LightImages = Images(
+    welcome = R.drawable.ic_welcome_bg,
+    logo = R.drawable.ic_logo,
+    login = R.drawable.ic_login_bg
+)
+
+private val DarkImages = Images(
+    welcome = R.drawable.ic_welcome_bg,
+    logo = R.drawable.ic_logo,
+    login = R.drawable.ic_login_bg
 )
 
 @Composable
 fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
+    val (colors, customColors) = if (darkTheme) DarkColorPalette to DarkCustomColorPalette else LightColorPalette to LightCustomColorPalette
+    val sysUiController = LocalSysUiController.current
+    val elevation = if (darkTheme) DarkElevation else LightElevation
+    val images = if (darkTheme) DarkImages else LightImages
+    SideEffect {
+        sysUiController.setStatusBarColor(color = colors.surface, darkIcons = false)
+        sysUiController.setNavigationBarColor(color = colors.surface)
     }
+    ProvideMyThemeColors(elevation, images, customColors) {
+        MaterialTheme(
+            colors = colors,
+            typography = typography,
+            shapes = Shapes,
+            content = content
+        )
+    }
+}
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
+object MyTheme {
+    val colors: Colors
+        @Composable
+        get() = MaterialTheme.colors
+
+    val typography: Typography
+        @Composable
+        get() = MaterialTheme.typography
+
+    val shapes: Shapes
+        @Composable
+        get() = MaterialTheme.shapes
+
+    val elevations: Elevations
+        @Composable
+        get() = LocalElevations.current
+
+    val images: Images
+        @Composable
+        get() = LocalImages.current
+
+    val customColors: MyThemeColors
+        @Composable
+        get() = LocalMyThemeColors.current
+}
+
+@Composable
+fun ProvideMyThemeColors(
+    elevation: Elevations,
+    images: Images,
+    colors: MyThemeColors,
+    content: @Composable () -> Unit
+) {
+    val colorPalette = remember { colors }
+    colorPalette.update(colors)
+    CompositionLocalProvider(
+        LocalElevations provides elevation,
+        LocalImages provides images,
+        LocalMyThemeColors provides colorPalette,
         content = content
     )
 }
+
+@Stable
+class MyThemeColors(
+    custom1: Color,
+    custom2: Color,
+    isDark: Boolean
+) {
+    var custom1 by mutableStateOf(custom1)
+        private set
+    var custom2 by mutableStateOf(custom2)
+        private set
+    var isDark by mutableStateOf(isDark)
+        private set
+
+    fun update(other: MyThemeColors) {
+        custom1 = other.custom1
+        custom2 = other.custom2
+        isDark = other.isDark
+    }
+}
+
+private val LocalMyThemeColors = staticCompositionLocalOf<MyThemeColors> {
+    error("No JetsnackColorPalette provided")
+}
+
