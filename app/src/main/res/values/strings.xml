@@ -11,5 +11,7 @@
       -->
     <string name="app_name">AndroidDevChallenge</string>
     <string name="label_start">GET STARTED</string>
-    <string name="label_login">LOGIN</string>
+    <string name="label_login">LOG IN</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_password">Password</string>
 </resources>

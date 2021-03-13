@@ -42,10 +42,10 @@ fun NavGraph(startDestination: Screen) {
         startDestination = startDestination.route
     ) {
         composable(Screen.Welcome.route) {
-            WelcomeScreen(actions.gotoLogin, actions.gotToMain)
+            WelcomeScreen(actions.goToLogin, actions.goToMain)
         }
         composable(Screen.Login.route) {
-            LoginScreen()
+            LoginScreen(actions.goToMain)
         }
         composable(Screen.Main.route) {
             MainScreen()
@@ -54,10 +54,10 @@ fun NavGraph(startDestination: Screen) {
 }
 
 class Actions(navController: NavHostController) {
-    val gotoLogin: () -> Unit = {
+    val goToLogin: () -> Unit = {
         navController.navigate(route = Screen.Login.route)
     }
-    val gotToMain: () -> Unit = {
+    val goToMain: () -> Unit = {
         navController.navigate(route = Screen.Main.route) {
             popUpTo(Screen.Login.route) { inclusive = true }
             popUpTo(Screen.Welcome.route) { inclusive = true }

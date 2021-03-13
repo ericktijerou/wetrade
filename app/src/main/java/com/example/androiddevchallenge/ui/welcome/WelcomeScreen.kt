@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ButtonDefaults.outlinedButtonColors
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
@@ -72,6 +73,7 @@ fun WelcomeScreen(goToLogin: () -> Unit, goToMain: () -> Unit) {
             Button(
                 onClick = goToMain,
                 shape = CircleShape,
+                elevation = ButtonDefaults.elevation(MyTheme.elevations.defaultElevation),
                 modifier = Modifier
                     .weight(1f)
                     .height(48.dp)

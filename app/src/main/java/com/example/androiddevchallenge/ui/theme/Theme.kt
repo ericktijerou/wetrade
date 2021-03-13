@@ -50,8 +50,8 @@ private val LightColorPalette = lightColors(
     onPrimary = gray900,
     background = purple,
     surface = Color.White,
-    onBackground = gray900,
-    onSurface = Color.White
+    onBackground = Color.White,
+    onSurface = gray900
 )
 
 private val LightCustomColorPalette = MyThemeColors(
