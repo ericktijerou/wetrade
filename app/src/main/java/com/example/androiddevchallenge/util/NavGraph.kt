@@ -22,8 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
-import androidx.navigation.compose.popUpTo
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.login.LoginScreen
 import com.example.androiddevchallenge.ui.main.MainScreen

@@ -59,9 +59,9 @@ import com.example.androiddevchallenge.util.DataHelper
 import com.example.androiddevchallenge.util.PositionItem
 import com.example.androiddevchallenge.util.backHandler
 import com.example.androiddevchallenge.util.lerp
-import dev.chrisbanes.accompanist.insets.LocalWindowInsets
-import dev.chrisbanes.accompanist.insets.statusBarsPadding
-import dev.chrisbanes.accompanist.insets.toPaddingValues
+import com.google.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.insets.toPaddingValues
 import kotlinx.coroutines.launch
 
 private val HeaderHeight = 70.dp
